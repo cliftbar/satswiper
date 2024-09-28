@@ -1,0 +1,24 @@
+general:
+  log_level: "info"
+  tmp_dir: "../tmp"
+  save_dir: "../download"
+  png_mode: "uint16"
+copernicus:
+  cdse_user:
+  cdse_password:
+catalog_api:
+  client_name:
+  client_id:
+  client_secret:
+openeo:
+  client_name:
+  client_id:
+  client_secret:
+targets:
+  mt-hood:
+    collection_id: "SENTINEL2_L2A"
+    bands_rgb: ["B04", "B03", "B02"]
+    bbox: {"west": -180, "south": -180, "east": 180, "north": 180}
+    day_lag: 4
+    max_cloud_cover: 100
+    osm_feature_ids: []

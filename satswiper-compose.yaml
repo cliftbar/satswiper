@@ -1,0 +1,12 @@
+services:
+  satswiper:
+    image: satswiper
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./tmp
+        target: /satswiper/tmp
+      - type: bind
+        source: ./tmp
+        target: /satswiper/download

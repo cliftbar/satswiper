@@ -1,0 +1,9 @@
+
+tmp/*
+!.keep
+src/cache
+
+*__pycache__*
+
+.idea
+src/resources/*.yaml
