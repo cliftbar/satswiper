@@ -75,7 +75,7 @@ def openeo_combine(source_mode="int16", png_mode: str = "uint16", clean_tmp: boo
         sentinel2_cube: DataCube = connection.load_collection(
             t_conf.collection_id,
             spatial_extent=t_conf.bbox,
-            temporal_extent=[dt_start.date(), dt_now.date()],
+            temporal_extent=[nc_dt.date(), dt_now.date()],
             bands=t_conf.bands_rgb,
             max_cloud_cover=t_conf.max_cloud_cover,
         )
@@ -177,7 +177,7 @@ def overlays(base_img: ndarray, bbox: dict[str, float], mode: str, feature_ids: 
 
 
 def main():
-    openeo_combine(clean_tmp=False, png_mode=app_conf.general.png_mode)
+    openeo_combine(clean_tmp=False, force_png=True, png_mode=app_conf.general.png_mode)
 
 
 if __name__ == '__main__':
