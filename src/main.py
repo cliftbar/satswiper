@@ -80,11 +80,13 @@ def openeo_combine(source_mode="int16", png_mode: str = "uint16", clean_tmp: boo
             max_cloud_cover=t_conf.max_cloud_cover,
         )
 
-        sentinel2_cube = sentinel2_cube.max_time()
+        # grap the last time point.
+        # note: max_time() grabs the maximum _pixel value across times_, not the value of the max timestamp
+        sentinel2_composite = sentinel2_cube.reduce_dimension(dimension=sentinel2_cube.metadata.temporal_dimension.name, reducer="last")
 
         data_file: Path = Path(tmp_base, data_name.with_suffix(".tiff"))
         data_file.parent.mkdir(exist_ok=True, parents=True)
-        sentinel2_cube.download(data_file)
+        sentinel2_composite.download(data_file)
         log(f"{data_file} complete", level=logging.INFO)
 
         rfi: DatasetReader
